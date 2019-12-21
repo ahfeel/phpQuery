@@ -262,7 +262,7 @@ abstract class phpQuery {
 	 * Creates new document from markup.
 	 * Chainable.
 	 *
-	 * @param unknown_type $markup
+	 * @param string|string[] $markup
 	 * @return phpQueryObject
 	 */
 	public static function newDocument($markup = null, $contentType = null) {
