@@ -78,7 +78,7 @@ class phpQueryObject
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function __construct($documentID) {
 //		if ($documentID instanceof self)
@@ -123,7 +123,7 @@ class phpQueryObject
 	 * Saves actual object to $var by reference.
 	 * Useful when need to break chain.
 	 * @param phpQueryObject $var
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function toReference(&$var) {
 		return $var = $this;
@@ -157,7 +157,7 @@ class phpQueryObject
 	 *
 	 * Watch out, it doesn't creates new instance, can be reverted with end().
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function toRoot() {
 		$this->elements = array($this->root);
@@ -176,7 +176,7 @@ class phpQueryObject
 	 * @param unknown_type $domId
 	 * @see phpQuery::newDocument
 	 * @see phpQuery::newDocumentFile
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function getDocumentIDRef(&$documentID) {
 		$documentID = $this->getDocumentID();
@@ -185,7 +185,7 @@ class phpQueryObject
 	/**
 	 * Returns object with stack set to document root.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function getDocument() {
 		return phpQuery::getDocument($this->getDocumentID());
@@ -200,7 +200,7 @@ class phpQueryObject
 	/**
 	 * Get object's Document ID.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function getDocumentID() {
 		return $this->documentID;
@@ -210,7 +210,7 @@ class phpQueryObject
 	 * CAUTION! None further operations will be possible on this document.
 	 * All objects refering to it will be useless.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function unloadDocument() {
 		phpQuery::unloadDocuments($this->getDocumentID());
@@ -701,7 +701,7 @@ class phpQueryObject
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function find($selectors, $context = null, $noHistory = false) {
 		if (!$noHistory)
@@ -1134,7 +1134,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function is($selector, $nodes = null) {
 		phpQuery::debug(array("Is:", $selector));
@@ -1161,7 +1161,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * - $index int
 	 * - $node DOMNode
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @link http://docs.jquery.com/Traversing/filter
 	 */
 	public function filterCallback($callback, $_skipHistory = false) {
@@ -1183,7 +1183,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @link http://docs.jquery.com/Traversing/filter
 	 */
 	public function filter($selectors, $_skipHistory = false) {
@@ -1330,7 +1330,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @link http://docs.jquery.com/Ajax/load
-	 * @return phpQuery|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQuery
 	 * @todo Support $selector
 	 */
 	public function load($url, $data = null, $callback = null) {
@@ -1377,7 +1377,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQuery|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQuery
 	 * @todo
 	 */
 	public function css() {
@@ -1405,7 +1405,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * @param unknown_type $type
 	 * @param unknown_type $data
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @TODO support more than event in $type (space-separated)
 	 */
 	public function trigger($type, $data = array()) {
@@ -1418,7 +1418,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * @param unknown_type $type
 	 * @param unknown_type $data
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @TODO
 	 */
 	public function triggerHandler($type, $data = array()) {
@@ -1431,7 +1431,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * @param unknown_type $type
 	 * @param unknown_type $data Optional
 	 * @param unknown_type $callback
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @TODO support '!' (exclusive) events
 	 * @TODO support more than event in $type (space-separated)
 	 */
@@ -1462,7 +1462,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function change($callback = null) {
 		if ($callback)
@@ -1472,7 +1472,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function submit($callback = null) {
 		if ($callback)
@@ -1482,7 +1482,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function click($callback = null) {
 		if ($callback)
@@ -1493,7 +1493,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapAllOld($wrapper) {
 		$wrapper = pq($wrapper)->_clone();
@@ -1511,7 +1511,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * TODO testme...
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapAll($wrapper) {
 		if (! $this->length())
@@ -1539,7 +1539,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * NON JQUERY METHOD
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapAllPHP($codeBefore, $codeAfter) {
 		return $this
@@ -1554,7 +1554,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrap($wrapper) {
 		foreach($this->stack() as $node)
@@ -1565,7 +1565,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapPHP($codeBefore, $codeAfter) {
 		foreach($this->stack() as $node)
@@ -1576,7 +1576,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapInner($wrapper) {
 		foreach($this->stack() as $node)
@@ -1587,7 +1587,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function wrapInnerPHP($codeBefore, $codeAfter) {
 		foreach($this->stack(1) as $node)
@@ -1598,7 +1598,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @testme Support for text nodes
 	 */
 	public function contents() {
@@ -1618,7 +1618,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * jQuery difference.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function contentsUnwrap() {
 		foreach($this->stack(1) as $node) {
@@ -1653,7 +1653,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function eq($num) {
 		$oldStack = $this->elements;
@@ -1666,7 +1666,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function size() {
 		return count($this->elements);
@@ -1674,7 +1674,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @deprecated Use length as attribute
 	 */
 	public function length() {
@@ -1686,7 +1686,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo $level
 	 */
 	public function end($level = 1) {
@@ -1702,7 +1702,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 * Normal use ->clone() .
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @access private
 	 */
 	public function _clone() {
@@ -1719,7 +1719,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function replaceWithPHP($code) {
 		return $this->replaceWith(phpQuery::php($code));
@@ -1729,7 +1729,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * @param String|phpQuery $content
 	 * @link http://docs.jquery.com/Manipulation/replaceWith#content
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function replaceWith($content) {
 		return $this->after($content)->remove();
@@ -1738,7 +1738,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String $selector
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo this works ?
 	 */
 	public function replaceAll($selector) {
@@ -1751,7 +1751,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function remove($selector = null) {
 		$loop = $selector
@@ -1816,7 +1816,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param unknown_type $html
-	 * @return string|phpQuery|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return string|phpQuery
 	 * @TODO force html result
 	 */
 	public function html($html = null, $callback1 = null, $callback2 = null, $callback3 = null) {
@@ -1884,7 +1884,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Just like html(), but returns markup with VALID (dangerous) PHP tags.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo support returning markup with PHP tags when called without param
 	 */
 	public function php($code = null) {
@@ -1913,7 +1913,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function children($selector = null) {
 		$stack = array();
@@ -1936,7 +1936,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function ancestors($selector = null) {
 		return $this->children( $selector );
@@ -1944,7 +1944,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function append( $content) {
 		return $this->insert($content, __FUNCTION__);
@@ -1952,7 +1952,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function appendPHP( $content) {
 		return $this->insert("<php><!-- {$content} --></php>", 'append');
@@ -1960,7 +1960,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function appendTo( $seletor) {
 		return $this->insert($seletor, __FUNCTION__);
@@ -1968,7 +1968,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function prepend( $content) {
 		return $this->insert($content, __FUNCTION__);
@@ -1977,7 +1977,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @todo accept many arguments, which are joined, arrays maybe also
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function prependPHP( $content) {
 		return $this->insert("<php><!-- {$content} --></php>", 'prepend');
@@ -1985,7 +1985,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function prependTo( $seletor) {
 		return $this->insert($seletor, __FUNCTION__);
@@ -1993,7 +1993,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function before($content) {
 		return $this->insert($content, __FUNCTION__);
@@ -2001,7 +2001,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function beforePHP( $content) {
 		return $this->insert("<php><!-- {$content} --></php>", 'before');
@@ -2010,7 +2010,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param String|phpQuery
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function insertBefore( $seletor) {
 		return $this->insert($seletor, __FUNCTION__);
@@ -2018,7 +2018,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function after( $content) {
 		return $this->insert($content, __FUNCTION__);
@@ -2026,7 +2026,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function afterPHP( $content) {
 		return $this->insert("<php><!-- {$content} --></php>", 'after');
@@ -2034,7 +2034,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function insertAfter( $seletor) {
 		return $this->insert($seletor, __FUNCTION__);
@@ -2044,7 +2044,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 *
 	 * @param unknown_type $target
 	 * @param unknown_type $type
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @access private
 	 */
 	public function insert($target, $type) {
@@ -2229,7 +2229,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * @param unknown_type $start
 	 * @param unknown_type $end
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @testme
 	 */
 	public function slice($start, $end = null) {
@@ -2250,7 +2250,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function reverse() {
 		$this->elementsBackup = $this->elements;
@@ -2281,7 +2281,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function plugin($class, $file = null) {
 		phpQuery::plugin($class, $file);
@@ -2335,7 +2335,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Use it ONLY when need to call next() on an iterated object (in same time).
 	 * Normaly there is no need to do such thing ;)
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @access private
 	 */
 	public function _next($selector = null) {
@@ -2347,7 +2347,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Use prev() and next().
 	 *
 	 * @deprecated
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @access private
 	 */
 	public function _prev($selector = null) {
@@ -2356,7 +2356,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function prev($selector = null) {
 		return $this->newInstance(
@@ -2364,7 +2364,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 		);
 	}
 	/**
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo
 	 */
 	public function prevAll($selector = null) {
@@ -2373,7 +2373,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 		);
 	}
 	/**
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo FIXME: returns source elements insted of next siblings
 	 */
 	public function nextAll($selector = null) {
@@ -2409,7 +2409,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function siblings($selector = null) {
 		$stack = array();
@@ -2426,7 +2426,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function not($selector = null) {
 		if (is_string($selector))
@@ -2472,7 +2472,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Enter description here...
 	 *
 	 * @param string|phpQueryObject
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function add($selector = null) {
 		if (! $selector)
@@ -2509,7 +2509,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function parent($selector = null) {
 		$stack = array();
@@ -2525,7 +2525,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function parents($selector = null) {
 		$stack = array();
@@ -2656,7 +2656,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo check CDATA ???
 	 */
 	public function attrPHP($attr, $code) {
@@ -2687,7 +2687,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function removeAttr($attr) {
 		foreach($this->stack(1) as $node) {
@@ -2771,7 +2771,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function andSelf() {
 		if ( $this->previous )
@@ -2781,7 +2781,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function addClass( $className) {
 		if (! $className)
@@ -2798,7 +2798,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function addClassPHP( $className) {
 		foreach($this->stack(1) as $node) {
@@ -2826,7 +2826,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function removeClass($className) {
 		foreach($this->stack(1) as $node) {
@@ -2844,7 +2844,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function toggleClass($className) {
 		foreach($this->stack(1) as $node) {
@@ -2869,7 +2869,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Result:
 	 * [ <p></p> ]
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @access private
 	 */
 	public function _empty() {
@@ -2886,7 +2886,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * @param array $scope External variables passed to callback. Use compact('varName1', 'varName2'...) and extract($scope)
 	 * @param array $arg1 Will ba passed as third and futher args to callback.
 	 * @param array $arg2 Will ba passed as fourth and futher args to callback, and so on...
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function each($callback, $param1 = null, $param2 = null, $param3 = null) {
 		$paramStructure = null;
@@ -2901,7 +2901,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Run callback on actual object.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function callback($callback, $param1 = null, $param2 = null, $param3 = null) {
 		$params = func_get_args();
@@ -2912,7 +2912,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Enter description here...
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 * @todo add $scope and $args as in each() ???
 	 */
 	public function map($callback, $param1 = null, $param2 = null, $param3 = null) {
@@ -2996,7 +2996,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	 * Proper functionality is choosed automagicaly.
 	 *
 	 * @see phpQueryObject::_next()
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 */
 	public function next($cssSelector = null){
 //		if ($cssSelector || $this->valid)
@@ -3130,7 +3130,7 @@ return pq($node)->siblings()->size() == 0 ? $node : null;
 	/**
 	 * Dump htmlOuter and preserve chain. Usefull for debugging.
 	 *
-	 * @return phpQueryObject|QueryTemplatesSource|QueryTemplatesParse|QueryTemplatesSourceQuery
+	 * @return phpQueryObject
 	 *
 	 */
 	public function dump() {
