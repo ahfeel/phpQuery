@@ -1,12 +1,12 @@
 {
-    "name": "somesh/php-query",
+    "name": "ahfeel/php-query",
     "description": "A composer wrapper for the phpQuery package",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "somesh",
-            "email": "mail@somesh.io"
+            "name": "ahfeel",
+            "email": "jeremie.bordier@gmail.com"
         }
         
     ],
